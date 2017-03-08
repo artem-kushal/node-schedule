@@ -37,4 +37,30 @@ function changeMessage (changedMessage) {
   });
 }
 
-export {changeDate, changeInterval, changeEmail, changeMessage};
+function startCreatingSchedule () {
+  Dispatcher.dispatch({
+    type: actionTypes.APP_START_CREATING_SCHEDULE
+  });
+}
+
+function endCreatingSchedule () {
+  Dispatcher.dispatch({
+    type: actionTypes.APP_END_CREATING_SCHEDULE
+  });
+}
+
+function errorHttpQuery () {
+  Dispatcher.dispatch({
+    type: actionTypes.APP_HTTP_ERROR_QUERY
+  });
+}
+
+export {
+  changeDate,
+  changeInterval,
+  changeEmail,
+  changeMessage,
+  startCreatingSchedule,
+  endCreatingSchedule,
+  errorHttpQuery
+};

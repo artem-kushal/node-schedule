@@ -5,6 +5,7 @@ import appStyle from '../index.css';
 import RepetitionRateRow from './repetition-rate-row';
 import MessageRow from './message-row';
 import ScheduleTable from './schedule-table';
+import {startCreatingSchedule} from '../actions/main-actions';
 
 class Main extends React.Component {
 
@@ -13,7 +14,8 @@ class Main extends React.Component {
     selectedInterval: PropTypes.number.isRequired,
     message: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    schedules: PropTypes.array.isRequired
+    schedules: PropTypes.array.isRequired,
+    isLoading: PropTypes.bool.isRequired
   }
 
   constructor (props) {
@@ -27,6 +29,8 @@ class Main extends React.Component {
     const {message, email} = this.props;
     if (email === '' || message === '') {
       this.setState({isWarningActive: true});
+    } else {
+      startCreatingSchedule();
     }
   };
 
@@ -50,6 +54,7 @@ class Main extends React.Component {
               email={this.props.email}
               message={this.props.message}
               onCreateSchedule={this.onCreateSchedule}
+              isLoading={this.props.isLoading}
             />
           </div>
           <div className={appStyle.tableContainer}>

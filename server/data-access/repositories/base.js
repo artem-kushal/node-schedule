@@ -5,20 +5,20 @@ class BaseRepository {
         this._mongooseModel = mongooseModel;
     }
 
-    getById () {
+    get (id) {
+        return this._mongooseModel.findById(id).exec();
     }
 
-    create (data) {
-
-    }
-
-    update (updateData) {
-    }
-
-    updateById (updateData, id) {
+    getAll () {
+        return this._mongooseModel.find();
     }
 
     delete (id) {
+        this.get(id).then(function (item) {
+            return item.remove();
+        }).catch(function (err) {
+            return err;
+        })
     }
 }
 

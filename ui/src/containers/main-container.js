@@ -25,6 +25,7 @@ class MainContainer extends Component {
         email={appState.email}
         message={appState.message}
         schedules={appState.schedules}
+        isLoading={appState.isLoading}
       />
     );
   }

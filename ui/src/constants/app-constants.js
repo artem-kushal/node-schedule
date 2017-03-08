@@ -4,7 +4,10 @@ const actionTypes = keyMirror({
   APP_CHANGE_DATE: null,
   APP_CHANGE_INTERVAL: null,
   APP_CHANGE_MESSAGE: null,
-  APP_CHANGE_EMAIL: null
+  APP_CHANGE_EMAIL: null,
+  APP_START_CREATING_SCHEDULE: null,
+  APP_END_CREATING_SCHEDULE: null,
+  APP_HTTP_ERROR_QUERY: null
 });
 
 const INTERVALS = {

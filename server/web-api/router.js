@@ -21,7 +21,7 @@ class Router {
 
 	_registerClientRouterPaths(app) {
 		app.get('/*', (req, res, next) => {
-			if (req.originalUrl.startsWith(config.apiPrefix)){
+			if (req.originalUrl.startsWith(config.get('apiPrefix'))) {
 				return next();
 			}
 			if (req.originalUrl === '/') {
@@ -33,7 +33,7 @@ class Router {
 
 	_registerControllers(app) {
 		this._controllers.forEach(route => {
-			app.use(config.apiPrefix + route.path, route.controller.Router);
+			app.use(config.get('apiPrefix') + route.path, route.controller.Router);
 		});
 	}
 
