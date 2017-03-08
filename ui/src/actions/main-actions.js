@@ -10,15 +10,6 @@ function changeDate (changedDate) {
   });
 }
 
-function changeTime (changedTime) {
-  Dispatcher.dispatch({
-    type: actionTypes.APP_CHANGE_TIME,
-    info: {
-      changedTime
-    }
-  });
-}
-
 function changeInterval (changedInterval) {
   Dispatcher.dispatch({
     type: actionTypes.APP_CHANGE_INTERVAL,
@@ -46,4 +37,4 @@ function changeMessage (changedMessage) {
   });
 }
 
-export {changeDate, changeTime, changeInterval, changeEmail, changeMessage};
+export {changeDate, changeInterval, changeEmail, changeMessage};

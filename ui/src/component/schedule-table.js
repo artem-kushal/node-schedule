@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Table, TableHead, TableRow, TableCell} from 'react-toolbox/lib/table';
+import moment from 'moment';
 
 const ScheduleTable = ({schedules}) => (
   <Table selectable={false}>
@@ -18,8 +19,8 @@ const ScheduleTable = ({schedules}) => (
       schedules.map((schedule, i) => (
         <TableRow key={i}>
           <TableCell>{schedule.frequency}</TableCell>
-          <TableCell>{schedule.date.toString()}</TableCell>
-          <TableCell>{schedule.time.toString()}</TableCell>
+          <TableCell>{moment(schedule.date).format('MM/DD/YYYY')}</TableCell>
+          <TableCell>{moment(schedule.date).format('HH:MM')}</TableCell>
         </TableRow>
       ))
     }

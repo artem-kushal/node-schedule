@@ -12,7 +12,7 @@ function onChangeEmail (value) {
   changeEmail(value);
 }
 
-const MessageRow = ({email, message}) => (
+const MessageRow = ({email, message, onCreateSchedule}) => (
   <section className={appStyle.row}>
     <div>
       <Input
@@ -35,14 +35,15 @@ const MessageRow = ({email, message}) => (
       />
     </div>
     <div className={appStyle.item}>
-      <Button icon='add' label='CREATE' accent raised />
+      <Button icon='add' label='CREATE' accent raised onClick={onCreateSchedule} />
     </div>
   </section>
 );
 
 MessageRow.propTypes = {
   email: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired
+  message: PropTypes.string.isRequired,
+  onCreateSchedule: PropTypes.func.isRequired
 };
 
 export default MessageRow;

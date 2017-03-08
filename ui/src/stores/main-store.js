@@ -5,15 +5,14 @@ import AppDispatcher from '../dispatcher/app-dispatcher';
 import {actionTypes} from '../constants/app-constants';
 
 const schedules = [
-  {frequency: getIntervalLabel(INTERVALS.ONCE_DAY), date: new Date(), time: new Date()},
-  {frequency: getIntervalLabel(INTERVALS.ONCE_MONTH), date: new Date(), time: new Date()},
-  {frequency: getIntervalLabel(INTERVALS.ONCE_WEEK), date: new Date(), time: new Date()}
+  {frequency: getIntervalLabel(INTERVALS.ONCE_DAY), date: new Date()},
+  {frequency: getIntervalLabel(INTERVALS.ONCE_MONTH), date: new Date()},
+  {frequency: getIntervalLabel(INTERVALS.ONCE_WEEK), date: new Date()}
 ];
 
 const StateRecord = Record({
-  selectedInterval: INTERVALS.ONCE_WEEK,
-  selectedDate: new Date(),
-  selectedTime: new Date(),
+  interval: INTERVALS.ONCE_WEEK,
+  date: new Date(),
   email: '',
   message: '',
   schedules: schedules
@@ -32,13 +31,10 @@ class MainStore extends ReduceStore {
   reduce (state, action) {
     switch (action.type) {
       case actionTypes.APP_CHANGE_DATE:
-        return state.set('selectedDate', action.info.changedDate);
+        return state.set('date', action.info.changedDate);
 
       case actionTypes.APP_CHANGE_INTERVAL:
-        return state.set('selectedInterval', action.info.changedInterval);
-
-      case actionTypes.APP_CHANGE_TIME:
-        return state.set('selectedTime', action.info.changedTime);
+        return state.set('interval', action.info.changedInterval);
 
       case actionTypes.APP_CHANGE_EMAIL:
         return state.set('email', action.info.changedEmail);

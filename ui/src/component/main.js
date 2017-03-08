@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {AppBar} from 'react-toolbox/lib/app_bar';
+import Snackbar from 'react-toolbox/lib/snackbar';
 import appStyle from '../index.css';
 import RepetitionRateRow from './repetition-rate-row';
 import MessageRow from './message-row';
@@ -10,7 +11,6 @@ class Main extends React.Component {
   static propTypes = {
     selectedDate: PropTypes.instanceOf(Date).isRequired,
     selectedInterval: PropTypes.number.isRequired,
-    selectedTime: PropTypes.instanceOf(Date).isRequired,
     message: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     schedules: PropTypes.array.isRequired
@@ -18,7 +18,21 @@ class Main extends React.Component {
 
   constructor (props) {
     super(props);
+    this.state = {
+      isWarningActive: false
+    }
   }
+
+  onCreateSchedule = () => {
+    const {message, email} = this.props;
+    if (email === '' || message === '') {
+      this.setState({isWarningActive: true});
+    }
+  };
+
+  onWarningTimeout = () => {
+    this.setState({isWarningActive: false});
+  };
 
   render () {
     return (
@@ -31,11 +45,11 @@ class Main extends React.Component {
             <RepetitionRateRow
               selectedDate={this.props.selectedDate}
               selectedInterval={this.props.selectedInterval}
-              selectedTime={this.props.selectedTime}
             />
             <MessageRow
               email={this.props.email}
               message={this.props.message}
+              onCreateSchedule={this.onCreateSchedule}
             />
           </div>
           <div className={appStyle.tableContainer}>
@@ -48,6 +62,14 @@ class Main extends React.Component {
             }
           </div>
         </div>
+        <Snackbar
+          active={this.state.isWarningActive}
+          label='Please, fill all fields.'
+          ref='snackbar'
+          type='warning'
+          timeout={2000}
+          onTimeout={this.onWarningTimeout}
+        />
       </div>
     );
   }

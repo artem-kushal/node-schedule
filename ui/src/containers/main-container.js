@@ -20,9 +20,8 @@ class MainContainer extends Component {
 
     return (
       <Main
-        selectedDate={appState.selectedDate}
-        selectedInterval={appState.selectedInterval}
-        selectedTime={appState.selectedTime}
+        selectedDate={appState.date}
+        selectedInterval={appState.interval}
         email={appState.email}
         message={appState.message}
         schedules={appState.schedules}
