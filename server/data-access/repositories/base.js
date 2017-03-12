@@ -13,8 +13,8 @@ class BaseRepository {
         return this._mongooseModel.find();
     }
 
-    delete (id) {
-        this.get(id).then(function (item) {
+    deleteById (id) {
+        this.get(id).then(item => {
             return item.remove();
         }).catch(function (err) {
             return err;

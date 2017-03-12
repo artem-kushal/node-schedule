@@ -9,15 +9,12 @@ class ScheduleRepository extends BaseRepository {
         super(ScheduleModel);
     }
 
-    create (data) {
+    create (interval, date, email, message) {
       const newSchedule = new ScheduleModel({
-        interval: data.interval,
-        date: data.date,
-        email: data.email,
-        message: data.message
+        interval, date, email, message,
       });
 
-      return newSchedule.save().exec();
+      return newSchedule.save();
     }
 
 }

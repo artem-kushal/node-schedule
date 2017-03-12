@@ -13,10 +13,10 @@ class Server {
     }
 
     start() {
-        // Database.connect().then(() => this._startServer()).catch((err) => {
-        //     logger.error(err.message);
-        // });
-        this._startServer()
+        Database.connect().then(() => this._startServer()).catch((err) => {
+            logger.error(err.message);
+        });
+        // this._startServer()
     }
 
     _startServer() {

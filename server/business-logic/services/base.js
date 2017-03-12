@@ -1,16 +1,35 @@
 'use strict';
 
 class BaseService {
-    constructor(Repository) {
+    constructor(Repository, Model) {
         this._repository = new Repository();
+        this._model = Model;
     }
 
-    get (opts) {
-        return this._repository.get(opts);
+    getAll () {
+        const self = this;
+
+        return new Promise((resolve, reject) => {
+            self._repository.getAll().then(result => {
+                resolve(result.map(resItem => {
+                    return self._model.parse(resItem);
+                }));
+            }).then(err => {
+                reject(err);
+            })
+        });
     }
 
-    create (data) {
-        return this._repository.create(data);
+    create (...args) {
+        const self = this;
+
+        return new Promise((resolve, reject) => {
+            self._repository.create(...args).then(result => {
+                resolve(self._model.parse(result));
+            }).then(err => {
+                reject(err);
+            })
+        });
     }
 
     delete (id) {

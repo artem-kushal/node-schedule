@@ -43,15 +43,27 @@ function startCreatingSchedule () {
   });
 }
 
-function endCreatingSchedule () {
+function endCreatingSchedule (schedule) {
   Dispatcher.dispatch({
-    type: actionTypes.APP_END_CREATING_SCHEDULE
+    type: actionTypes.APP_END_CREATING_SCHEDULE,
+    info: {
+      schedule
+    }
   });
 }
 
 function errorHttpQuery () {
   Dispatcher.dispatch({
     type: actionTypes.APP_HTTP_ERROR_QUERY
+  });
+}
+
+function loadedShedules (schedules) {
+  Dispatcher.dispatch({
+    type: actionTypes.APP_SHEDULES_LOADED,
+    info: {
+      schedules
+    }
   });
 }
 
@@ -62,5 +74,6 @@ export {
   changeMessage,
   startCreatingSchedule,
   endCreatingSchedule,
-  errorHttpQuery
+  errorHttpQuery,
+  loadedShedules
 };

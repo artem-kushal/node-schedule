@@ -7,7 +7,8 @@ const actionTypes = keyMirror({
   APP_CHANGE_EMAIL: null,
   APP_START_CREATING_SCHEDULE: null,
   APP_END_CREATING_SCHEDULE: null,
-  APP_HTTP_ERROR_QUERY: null
+  APP_HTTP_ERROR_QUERY: null,
+  APP_SHEDULES_LOADED: null
 });
 
 const INTERVALS = {

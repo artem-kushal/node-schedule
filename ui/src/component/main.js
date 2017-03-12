@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import Immutable from 'immutable';
 import {AppBar} from 'react-toolbox/lib/app_bar';
 import Snackbar from 'react-toolbox/lib/snackbar';
 import appStyle from '../index.css';
@@ -14,7 +15,7 @@ class Main extends React.Component {
     selectedInterval: PropTypes.number.isRequired,
     message: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    schedules: PropTypes.array.isRequired,
+    schedules: PropTypes.instanceOf(Immutable.Iterable).isRequired,
     isLoading: PropTypes.bool.isRequired
   }
 
@@ -59,7 +60,7 @@ class Main extends React.Component {
           </div>
           <div className={appStyle.tableContainer}>
             {
-              (this.props.schedules.length === 0) ? (
+              (this.props.schedules.count() === 0) ? (
                 <p className={appStyle.noSchedulesWarning}>No schedules added.</p>
               ) : (
                 <ScheduleTable schedules={this.props.schedules} />

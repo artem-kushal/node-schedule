@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
+import Immutable from 'immutable';
 import {Table, TableHead, TableRow, TableCell} from 'react-toolbox/lib/table';
 import moment from 'moment';
+import {getIntervalLabel} from '../constants/app-constants';
 
 const ScheduleTable = ({schedules}) => (
   <Table selectable={false}>
@@ -18,7 +20,7 @@ const ScheduleTable = ({schedules}) => (
     {
       schedules.map((schedule, i) => (
         <TableRow key={i}>
-          <TableCell>{schedule.frequency}</TableCell>
+          <TableCell>{getIntervalLabel(schedule.frequency)}</TableCell>
           <TableCell>{moment(schedule.date).format('MM/DD/YYYY')}</TableCell>
           <TableCell>{moment(schedule.date).format('HH:MM')}</TableCell>
         </TableRow>
@@ -28,7 +30,7 @@ const ScheduleTable = ({schedules}) => (
 );
 
 ScheduleTable.propTypes = {
-  schedules: PropTypes.array.isRequired
+  schedules: PropTypes.instanceOf(Immutable.Iterable).isRequired
 };
 
 export default ScheduleTable;
