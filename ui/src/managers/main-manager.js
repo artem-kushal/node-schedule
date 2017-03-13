@@ -15,7 +15,7 @@ function parseShedules (response) {
 const MainManager = {
 
   loadSchedules () {
-    fetch('http://localhost:1337/api/shedules').then(function (response) {
+    fetch('/api/shedules').then(function (response) {
       return response.json();
     }).then(function (response) {
       mainActions.loadedShedules(parseShedules(response));
@@ -25,7 +25,7 @@ const MainManager = {
   },
 
   createSchedule (interval, date, email, message) {
-    fetch('http://localhost:1337/api/shedules/create', {
+    fetch('/api/shedules/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -40,6 +40,27 @@ const MainManager = {
       throw new Error();
     }).then(function (response) {
       mainActions.endCreatingSchedule(Schedule.parse(response));
+    }).catch(function (err) {
+      mainActions.errorHttpQuery();
+    });
+  },
+
+  deleteSchedule (idToDelete) {
+    fetch('/api/shedules/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: idToDelete
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error();
+    }).then(function (response) {
+      mainActions.endDeletingSchedule(Schedule.parse(response));
     }).catch(function (err) {
       mainActions.errorHttpQuery();
     });

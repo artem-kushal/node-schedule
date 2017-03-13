@@ -14,11 +14,15 @@ class BaseRepository {
     }
 
     deleteById (id) {
-        this.get(id).then(item => {
-            return item.remove();
-        }).catch(function (err) {
-            return err;
-        })
+        const self = this;
+
+        return new Promise((resolve, reject) => {
+            self.get(id).then(item => {
+                resolve(item.remove());
+            }).catch(function (err) {
+                reject(err);
+            })
+        });
     }
 }
 

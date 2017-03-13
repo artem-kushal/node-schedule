@@ -52,6 +52,24 @@ function endCreatingSchedule (schedule) {
   });
 }
 
+function startDeletingSchedule (idToDelete) {
+  Dispatcher.dispatch({
+    type: actionTypes.APP_START_DELETING_SCHEDULE,
+    info: {
+      idToDelete
+    }
+  });
+}
+
+function endDeletingSchedule (deletedShedule) {
+  Dispatcher.dispatch({
+    type: actionTypes.APP_END_DELETING_SCHEDULE,
+    info: {
+      deletedShedule
+    }
+  });
+}
+
 function errorHttpQuery () {
   Dispatcher.dispatch({
     type: actionTypes.APP_HTTP_ERROR_QUERY
@@ -75,5 +93,7 @@ export {
   startCreatingSchedule,
   endCreatingSchedule,
   errorHttpQuery,
-  loadedShedules
+  loadedShedules,
+  startDeletingSchedule,
+  endDeletingSchedule
 };

@@ -45,10 +45,25 @@ class MainStore extends ReduceStore {
 
       case actionTypes.APP_END_CREATING_SCHEDULE:
         const schedules = state.schedules;
-        
+
         return new StateRecord({
           isLoading: false,
           schedules: schedules.push(action.info.schedule)
+        });
+
+      case actionTypes.APP_START_DELETING_SCHEDULE:
+        mainManager.deleteSchedule(action.info.idToDelete);
+        return state.set('isLoading', true);
+
+      case actionTypes.APP_END_DELETING_SCHEDULE:
+        const {deletedShedule} = action.info;
+
+        return state.update('schedules', shedules => {
+          const deletedIndex = shedules.findIndex(shedule => {
+            return shedule.id === deletedShedule.id;
+          });
+
+          return shedules.delete(deletedIndex);
         });
 
       case actionTypes.APP_HTTP_ERROR_QUERY:

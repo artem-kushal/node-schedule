@@ -33,7 +33,15 @@ class BaseService {
     }
 
     delete (id) {
-        return this._repository.deleteById(id);
+        const self = this;
+
+        return new Promise((resolve, reject) => {
+            self._repository.deleteById(id).then(result => {
+                resolve(self._model.parse(result));
+            }).then(err => {
+                reject(err);
+            })
+        });
     }
 }
 
