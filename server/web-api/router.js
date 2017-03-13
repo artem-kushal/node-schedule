@@ -25,7 +25,7 @@ class Router {
 				return next();
 			}
 			if (req.originalUrl === '/') {
-				return res.sendFile(path.resolve(__dirname + '/public' + '/index.html'));
+				return res.sendFile(path.resolve(__dirname + '/public/index.html'));
 			}
 			return next(new NotFoundHttpError());
 		});

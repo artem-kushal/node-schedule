@@ -58,7 +58,7 @@ class MainStore extends ReduceStore {
       case actionTypes.APP_END_DELETING_SCHEDULE:
         const {deletedShedule} = action.info;
 
-        return state.update('schedules', shedules => {
+        return state.set('isLoading', false).update('schedules', shedules => {
           const deletedIndex = shedules.findIndex(shedule => {
             return shedule.id === deletedShedule.id;
           });

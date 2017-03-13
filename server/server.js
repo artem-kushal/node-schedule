@@ -5,6 +5,8 @@ const config = require('./configuration');
 const Application = require('./web-api/app');
 const Database = require('./data-access/database');
 const logger = require('./shared/logger');
+const scheduler = require('./business-logic/sheduler');
+const ScheduleService = require('./business-logic/services/schedule');
 
 class Server {
     constructor() {
@@ -20,6 +22,7 @@ class Server {
     }
 
     _startServer() {
+        scheduler.init(ScheduleService);
         this._server.listen(config.get('port'), () => {
             logger.info('Application is listening on port ' + config.get('port'));
         });
