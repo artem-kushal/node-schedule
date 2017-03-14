@@ -8,6 +8,8 @@ const logger = require('./shared/logger');
 const scheduler = require('./business-logic/sheduler');
 const ScheduleService = require('./business-logic/services/schedule');
 
+const EmailHandler = require('./business-logic/handlers/email-handler');
+
 class Server {
     constructor() {
         this._app = new Application(config);
@@ -15,9 +17,10 @@ class Server {
     }
 
     start() {
-        Database.connect().then(() => this._startServer()).catch((err) => {
-            logger.error(err.message);
-        });
+        new EmailHandler().start();
+        // Database.connect().then(() => this._startServer()).catch((err) => {
+        //     logger.error(err.message);
+        // });
         // this._startServer()
     }
 
