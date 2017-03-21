@@ -48,6 +48,7 @@ class MainStore extends ReduceStore {
 
         return new StateRecord({
           isLoading: false,
+          date: new Date(),
           schedules: schedules.push(action.info.schedule)
         });
 

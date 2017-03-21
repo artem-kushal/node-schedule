@@ -26,7 +26,7 @@ const ScheduleTable = ({schedules}) => (
         <TableRow key={i}>
           <TableCell>{getIntervalLabel(schedule.frequency)}</TableCell>
           <TableCell>{moment(schedule.date).format('MM/DD/YYYY')}</TableCell>
-          <TableCell>{moment(schedule.date).format('HH:MM')}</TableCell>
+          <TableCell>{moment(schedule.date).format('HH:mm')}</TableCell>
           <TableCell><IconButton icon='close' primary onClick={startDeletingSchedule.bind(this, schedule.id)} /></TableCell>
         </TableRow>
       ))

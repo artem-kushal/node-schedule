@@ -14,7 +14,7 @@ ScheduleRecord.parse = function (data) {
   return new ScheduleRecord({
     id: data.id,
     frequency: data.interval,
-    date: data.date,
+    date: new Date(data.date),
     email: data.email,
     message: data.message
   });
