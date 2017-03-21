@@ -12,7 +12,7 @@ class Scheduler {
 
     _createShedule (schedule) {
       const emailHandler = new EmailHandler(schedule.email, schedule.message);
-      this._jobs.push(new ScheduleJob(schedule.id, schedule.date, emailHandler));
+      this._jobs.push(new ScheduleJob(schedule.id, schedule.interval, schedule.date, emailHandler));
     }
 
     init (Service) {

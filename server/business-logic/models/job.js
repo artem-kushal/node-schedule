@@ -1,16 +1,19 @@
 'use strict';
 
 const CronJob = require('cron').CronJob;
+const CronTimeParser = require('../cron-parser');
 
 class ScheduleJob {
-    constructor(id, date, handler) {
+    constructor(id, interval, date, handler) {
         this.id = id;
-        this.cronJob = this._createCronJob(date, handler);
+        this.cronJob = this._createCronJob(interval, date, handler);
     }
 
-    _createCronJob(date, handler) {
+    _createCronJob(interval, date, handler) {
+        const cronTime = CronTimeParser.parse(interval, date);
+
         return new CronJob({
-            cronTime: '10 * * * * *',
+            cronTime,
             onTick: function () {
                 return handler.start();
             },

@@ -1,5 +1,5 @@
 {
   "port" : "1337",
-  "mongooseUri": "mongodb://127.0.0.1:27017/schedules",
+  "mongooseUri": "mongodb://testUser:W3swaj7jaTEk@ds137760.mlab.com:37760/schedule",
   "apiPrefix": "/api"
 }

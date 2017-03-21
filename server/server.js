@@ -17,10 +17,10 @@ class Server {
     }
 
     start() {
-        new EmailHandler().start();
-        // Database.connect().then(() => this._startServer()).catch((err) => {
-        //     logger.error(err.message);
-        // });
+        // new EmailHandler().start();
+        Database.connect().then(() => this._startServer()).catch((err) => {
+            logger.error(err.message);
+        });
         // this._startServer()
     }
 

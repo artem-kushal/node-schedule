@@ -16,14 +16,14 @@ class EmailHandler {
     }
 
     start() {
-        transporter.sendMail({
-            from: 'fire-111@mail.ru',
-            to: 'stdart9@gmail.com',
-            subject: 'hello',
-            html: '<b>hello world!</b>',
-            text: 'hello world!'
-        });
-        // logger.info(this._message);
+        // transporter.sendMail({
+        //     from: 'fire-111@mail.ru',
+        //     to: 'stdart9@gmail.com',
+        //     subject: 'hello',
+        //     html: '<b>hello world!</b>',
+        //     text: 'hello world!'
+        // });
+        logger.info(this._message);
     }
 }
 
