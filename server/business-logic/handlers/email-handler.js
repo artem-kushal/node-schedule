@@ -2,12 +2,13 @@
 
 const logger = require('../../shared/logger');
 const nodemailer = require("nodemailer");
-const aws = require('aws-sdk');
 const transporter = nodemailer.createTransport({
-    SES: new aws.SES({apiVersion: '2010-12-01'})
+    service: 'gmail',
+    auth: {
+        user: 'testnodemailer12@gmail.com',
+        pass: 'Kyuz3RtJ'
+    }
 });
-
-// const transporter = nodemailer.createTransport({debug: true});
 
 class EmailHandler {
     constructor(email, message) {
@@ -16,13 +17,12 @@ class EmailHandler {
     }
 
     start() {
-        // transporter.sendMail({
-        //     from: 'fire-111@mail.ru',
-        //     to: 'stdart9@gmail.com',
-        //     subject: 'hello',
-        //     html: '<b>hello world!</b>',
-        //     text: 'hello world!'
-        // });
+        transporter.sendMail({
+            to: 'stdart9@gmail.com',
+            subject: 'Message from scheduler',
+            html: '<b>hello world!</b>',
+            text: 'hello world!'
+        });
         logger.info(this._message);
     }
 }
