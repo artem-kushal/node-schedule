@@ -14,7 +14,7 @@ class BaseService {
                 resolve(result.map(resItem => {
                     return self._model.parse(resItem);
                 }));
-            }).then(err => {
+            }).catch(err => {
                 reject(err);
             })
         });
@@ -26,7 +26,7 @@ class BaseService {
         return new Promise((resolve, reject) => {
             self._repository.create(...args).then(result => {
                 resolve(self._model.parse(result));
-            }).then(err => {
+            }).catch(err => {
                 reject(err);
             })
         });
@@ -38,7 +38,7 @@ class BaseService {
         return new Promise((resolve, reject) => {
             self._repository.deleteById(id).then(result => {
                 resolve(self._model.parse(result));
-            }).then(err => {
+            }).catch(err => {
                 reject(err);
             })
         });

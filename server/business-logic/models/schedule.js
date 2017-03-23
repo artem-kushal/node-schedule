@@ -11,7 +11,7 @@ class Schedule {
 
     static parse(dbModel) {
         return new Schedule(
-            dbModel._id,
+            dbModel._id.toString(),
             dbModel.interval,
             dbModel.date,
             dbModel.email,

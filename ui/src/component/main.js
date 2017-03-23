@@ -7,6 +7,7 @@ import RepetitionRateRow from './repetition-rate-row';
 import MessageRow from './message-row';
 import ScheduleTable from './schedule-table';
 import {startCreatingSchedule} from '../actions/main-actions';
+import {EMAIL_REGEX} from '../constants/app-constants';
 
 class Main extends React.Component {
 
@@ -28,7 +29,7 @@ class Main extends React.Component {
 
   onCreateSchedule = () => {
     const {message, email} = this.props;
-    if (email === '' || message === '') {
+    if (!EMAIL_REGEX.test(email) || message === '') {
       this.setState({isWarningActive: true});
     } else {
       startCreatingSchedule();
@@ -70,7 +71,7 @@ class Main extends React.Component {
         </div>
         <Snackbar
           active={this.state.isWarningActive}
-          label='Please, fill all fields.'
+          label='Please, fill all fields or email is not valid.'
           ref='snackbar'
           type='warning'
           timeout={2000}

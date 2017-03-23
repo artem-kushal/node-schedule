@@ -19,6 +19,7 @@ const ScheduleTable = ({schedules}) => (
         Time
       </TableCell>
       <TableCell>
+        {null}
       </TableCell>
     </TableHead>
     {

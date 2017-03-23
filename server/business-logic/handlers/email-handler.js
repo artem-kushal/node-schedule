@@ -1,8 +1,8 @@
 'use strict';
 
 const logger = require('../../shared/logger');
-const nodemailer = require("nodemailer");
-const transporter = nodemailer.createTransport({
+const nodeMailer = require("nodemailer");
+const transporter = nodeMailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'testnodemailer12@gmail.com',
@@ -18,10 +18,10 @@ class EmailHandler {
 
     start() {
         transporter.sendMail({
-            to: 'stdart9@gmail.com',
+            to: this._email,
             subject: 'Message from scheduler',
-            html: '<b>hello world!</b>',
-            text: 'hello world!'
+            html: `<b>${this._message}</b>`,
+            text: this._message
         });
         logger.info(this._message);
     }

@@ -21,9 +21,9 @@ class ScheduleService extends BaseService {
                 
                 scheduler.addSchedule(schedule);
                 resolve(schedule);
-            }).then(err => {
+            }).catch(err => {
                 reject(err);
-            })
+            });
         });
     }
 
@@ -36,7 +36,7 @@ class ScheduleService extends BaseService {
                 
                 scheduler.deleteShedule(schedule);
                 resolve(schedule);
-            }).then(err => {
+            }).catch(err => {
                 reject(err);
             })
         });
